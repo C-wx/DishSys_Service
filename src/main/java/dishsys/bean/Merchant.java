@@ -15,11 +15,16 @@ public class Merchant {
 
     private String address;
 
-    private String describe;
+    private String descript;
 
     private Date createTime;
 
     private Date updateTime;
+
+    /**
+     * 验证码
+     */
+    private String veryCode;
 
     public Long getId() {
         return id;
@@ -69,12 +74,12 @@ public class Merchant {
         this.address = address == null ? null : address.trim();
     }
 
-    public String getDescribe() {
-        return describe;
+    public String getDescript() {
+        return descript;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe == null ? null : describe.trim();
+    public void setDescript(String descript) {
+        this.descript = descript == null ? null : descript.trim();
     }
 
     public Date getCreateTime() {
@@ -91,5 +96,13 @@ public class Merchant {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getVeryCode() {
+        return veryCode;
+    }
+
+    public void setVeryCode(String veryCode) {
+        this.veryCode = veryCode;
     }
 }

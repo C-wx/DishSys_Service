@@ -8,7 +8,7 @@
     <result column="AVATAR" jdbcType="VARCHAR" property="avatar" />
     <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
     <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
-    <result column="DESCRIBE" jdbcType="VARCHAR" property="describe" />
+    <result column="DESCRIPT" jdbcType="VARCHAR" property="descript" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
@@ -71,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, NAME, PHONE, AVATAR, PASSWORD, ADDRESS, DESCRIBE, CREATE_TIME, UPDATE_TIME
+    ID, NAME, PHONE, AVATAR, PASSWORD, ADDRESS, DESCRIPT, CREATE_TIME, UPDATE_TIME
   </sql>
   <select id="selectByExample" parameterType="dishsys.bean.MerchantExample" resultMap="BaseResultMap">
     select
@@ -106,10 +106,10 @@
   </delete>
   <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="dishsys.bean.Merchant" useGeneratedKeys="true">
     insert into merchant (NAME, PHONE, AVATAR, 
-      PASSWORD, ADDRESS, DESCRIBE, 
+      PASSWORD, ADDRESS, DESCRIPT, 
       CREATE_TIME, UPDATE_TIME)
     values (#{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{describe,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{descript,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="dishsys.bean.Merchant" useGeneratedKeys="true">
@@ -130,8 +130,8 @@
       <if test="address != null">
         ADDRESS,
       </if>
-      <if test="describe != null">
-        DESCRIBE,
+      <if test="descript != null">
+        DESCRIPT,
       </if>
       <if test="createTime != null">
         CREATE_TIME,
@@ -156,8 +156,8 @@
       <if test="address != null">
         #{address,jdbcType=VARCHAR},
       </if>
-      <if test="describe != null">
-        #{describe,jdbcType=VARCHAR},
+      <if test="descript != null">
+        #{descript,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -194,8 +194,8 @@
       <if test="record.address != null">
         ADDRESS = #{record.address,jdbcType=VARCHAR},
       </if>
-      <if test="record.describe != null">
-        DESCRIBE = #{record.describe,jdbcType=VARCHAR},
+      <if test="record.descript != null">
+        DESCRIPT = #{record.descript,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null">
         CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
@@ -216,7 +216,7 @@
       AVATAR = #{record.avatar,jdbcType=VARCHAR},
       PASSWORD = #{record.password,jdbcType=VARCHAR},
       ADDRESS = #{record.address,jdbcType=VARCHAR},
-      DESCRIBE = #{record.describe,jdbcType=VARCHAR},
+      DESCRIPT = #{record.descript,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -241,8 +241,8 @@
       <if test="address != null">
         ADDRESS = #{address,jdbcType=VARCHAR},
       </if>
-      <if test="describe != null">
-        DESCRIBE = #{describe,jdbcType=VARCHAR},
+      <if test="descript != null">
+        DESCRIPT = #{descript,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
@@ -260,7 +260,7 @@
       AVATAR = #{avatar,jdbcType=VARCHAR},
       PASSWORD = #{password,jdbcType=VARCHAR},
       ADDRESS = #{address,jdbcType=VARCHAR},
-      DESCRIBE = #{describe,jdbcType=VARCHAR},
+      DESCRIPT = #{descript,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=BIGINT}

@@ -5,10 +5,12 @@
     <id column="ID" jdbcType="BIGINT" property="id" />
     <result column="CLASSIFY_ID" jdbcType="INTEGER" property="classifyId" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
-    <result column="DESCRIBE" jdbcType="VARCHAR" property="describe" />
+    <result column="DESCRIPT" jdbcType="VARCHAR" property="descript" />
     <result column="PRICE" jdbcType="REAL" property="price" />
     <result column="SALES" jdbcType="INTEGER" property="sales" />
     <result column="RECOMMENDED" jdbcType="INTEGER" property="recommended" />
+    <result column="PICTURE" jdbcType="VARCHAR" property="picture" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, CLASSIFY_ID, NAME, DESCRIBE, PRICE, SALES, RECOMMENDED
+    ID, CLASSIFY_ID, NAME, DESCRIPT, PRICE, SALES, RECOMMENDED, PICTURE, CREATE_TIME
   </sql>
   <select id="selectByExample" parameterType="dishsys.bean.DishExample" resultMap="BaseResultMap">
     select
@@ -103,12 +105,12 @@
     </if>
   </delete>
   <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="dishsys.bean.Dish" useGeneratedKeys="true">
-    insert into dishes (CLASSIFY_ID, NAME, DESCRIBE, 
-      PRICE, SALES, RECOMMENDED
-      )
-    values (#{classifyId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{describe,jdbcType=VARCHAR}, 
-      #{price,jdbcType=REAL}, #{sales,jdbcType=INTEGER}, #{recommended,jdbcType=INTEGER}
-      )
+    insert into dishes (CLASSIFY_ID, NAME, DESCRIPT, 
+      PRICE, SALES, RECOMMENDED, 
+      PICTURE, CREATE_TIME)
+    values (#{classifyId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{descript,jdbcType=VARCHAR}, 
+      #{price,jdbcType=REAL}, #{sales,jdbcType=INTEGER}, #{recommended,jdbcType=INTEGER}, 
+      #{picture,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="dishsys.bean.Dish" useGeneratedKeys="true">
     insert into dishes
@@ -119,8 +121,8 @@
       <if test="name != null">
         NAME,
       </if>
-      <if test="describe != null">
-        DESCRIBE,
+      <if test="descript != null">
+        DESCRIPT,
       </if>
       <if test="price != null">
         PRICE,
@@ -131,6 +133,12 @@
       <if test="recommended != null">
         RECOMMENDED,
       </if>
+      <if test="picture != null">
+        PICTURE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="classifyId != null">
@@ -139,8 +147,8 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="describe != null">
-        #{describe,jdbcType=VARCHAR},
+      <if test="descript != null">
+        #{descript,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
         #{price,jdbcType=REAL},
@@ -150,6 +158,12 @@
       </if>
       <if test="recommended != null">
         #{recommended,jdbcType=INTEGER},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -171,8 +185,8 @@
       <if test="record.name != null">
         NAME = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.describe != null">
-        DESCRIBE = #{record.describe,jdbcType=VARCHAR},
+      <if test="record.descript != null">
+        DESCRIPT = #{record.descript,jdbcType=VARCHAR},
       </if>
       <if test="record.price != null">
         PRICE = #{record.price,jdbcType=REAL},
@@ -182,6 +196,12 @@
       </if>
       <if test="record.recommended != null">
         RECOMMENDED = #{record.recommended,jdbcType=INTEGER},
+      </if>
+      <if test="record.picture != null">
+        PICTURE = #{record.picture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -193,10 +213,12 @@
     set ID = #{record.id,jdbcType=BIGINT},
       CLASSIFY_ID = #{record.classifyId,jdbcType=INTEGER},
       NAME = #{record.name,jdbcType=VARCHAR},
-      DESCRIBE = #{record.describe,jdbcType=VARCHAR},
+      DESCRIPT = #{record.descript,jdbcType=VARCHAR},
       PRICE = #{record.price,jdbcType=REAL},
       SALES = #{record.sales,jdbcType=INTEGER},
-      RECOMMENDED = #{record.recommended,jdbcType=INTEGER}
+      RECOMMENDED = #{record.recommended,jdbcType=INTEGER},
+      PICTURE = #{record.picture,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -210,8 +232,8 @@
       <if test="name != null">
         NAME = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="describe != null">
-        DESCRIBE = #{describe,jdbcType=VARCHAR},
+      <if test="descript != null">
+        DESCRIPT = #{descript,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
         PRICE = #{price,jdbcType=REAL},
@@ -222,6 +244,12 @@
       <if test="recommended != null">
         RECOMMENDED = #{recommended,jdbcType=INTEGER},
       </if>
+      <if test="picture != null">
+        PICTURE = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where ID = #{id,jdbcType=BIGINT}
   </update>
@@ -229,10 +257,12 @@
     update dishes
     set CLASSIFY_ID = #{classifyId,jdbcType=INTEGER},
       NAME = #{name,jdbcType=VARCHAR},
-      DESCRIBE = #{describe,jdbcType=VARCHAR},
+      DESCRIPT = #{descript,jdbcType=VARCHAR},
       PRICE = #{price,jdbcType=REAL},
       SALES = #{sales,jdbcType=INTEGER},
-      RECOMMENDED = #{recommended,jdbcType=INTEGER}
+      RECOMMENDED = #{recommended,jdbcType=INTEGER},
+      PICTURE = #{picture,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

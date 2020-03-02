@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="dishsys.bean.Classify">
     <id column="ID" jdbcType="INTEGER" property="id" />
     <result column="VALUE" jdbcType="VARCHAR" property="value" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -64,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, VALUE
+    ID, VALUE, CREATE_TIME
   </sql>
   <select id="selectByExample" parameterType="dishsys.bean.ClassifyExample" resultMap="BaseResultMap">
     select
@@ -98,8 +99,8 @@
     </if>
   </delete>
   <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="dishsys.bean.Classify" useGeneratedKeys="true">
-    insert into classify (VALUE)
-    values (#{value,jdbcType=VARCHAR})
+    insert into classify (VALUE, CREATE_TIME)
+    values (#{value,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="dishsys.bean.Classify" useGeneratedKeys="true">
     insert into classify
@@ -107,10 +108,16 @@
       <if test="value != null">
         VALUE,
       </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="value != null">
         #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -129,6 +136,9 @@
       <if test="record.value != null">
         VALUE = #{record.value,jdbcType=VARCHAR},
       </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -137,7 +147,8 @@
   <update id="updateByExample" parameterType="map">
     update classify
     set ID = #{record.id,jdbcType=INTEGER},
-      VALUE = #{record.value,jdbcType=VARCHAR}
+      VALUE = #{record.value,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -148,12 +159,16 @@
       <if test="value != null">
         VALUE = #{value,jdbcType=VARCHAR},
       </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="dishsys.bean.Classify">
     update classify
-    set VALUE = #{value,jdbcType=VARCHAR}
+    set VALUE = #{value,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
