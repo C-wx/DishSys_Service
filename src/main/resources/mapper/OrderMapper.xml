@@ -13,7 +13,8 @@
     <result column="REMARK" jdbcType="VARCHAR" property="remark" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="PAY_TIME" jdbcType="TIMESTAMP" property="payTime" />
-    <result column="SATUS" jdbcType="VARCHAR" property="satus" />
+    <result column="ORDER_STATUS" jdbcType="VARCHAR" property="orderStatus" />
+    <result column="OUT_STATUS" jdbcType="VARCHAR" property="outStatus" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -75,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List">
     ID, OPEN_ID, DISH_ID, ORDER_CODE, NUM, PRICE, TABLE_NO, PEOPLE_NUM, REMARK, CREATE_TIME, 
-    PAY_TIME, SATUS
+    PAY_TIME, ORDER_STATUS, OUT_STATUS
   </sql>
   <select id="selectByExample" parameterType="dishsys.bean.OrderExample" resultMap="BaseResultMap">
     select
@@ -84,7 +85,7 @@
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from order
+    from orders
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -95,31 +96,31 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from order
+    from orders
     where ID = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from order
+    delete from orders
     where ID = #{id,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="dishsys.bean.OrderExample">
-    delete from order
+    delete from orders
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="dishsys.bean.Order" useGeneratedKeys="true">
-    insert into order (OPEN_ID, DISH_ID, ORDER_CODE, 
+    insert into orders (OPEN_ID, DISH_ID, ORDER_CODE, 
       NUM, PRICE, TABLE_NO, PEOPLE_NUM, 
       REMARK, CREATE_TIME, PAY_TIME, 
-      SATUS)
+      ORDER_STATUS, OUT_STATUS)
     values (#{openId,jdbcType=VARCHAR}, #{dishId,jdbcType=BIGINT}, #{orderCode,jdbcType=VARCHAR}, 
       #{num,jdbcType=INTEGER}, #{price,jdbcType=REAL}, #{tableNo,jdbcType=INTEGER}, #{peopleNum,jdbcType=INTEGER}, 
       #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP}, 
-      #{satus,jdbcType=VARCHAR})
+      #{orderStatus,jdbcType=VARCHAR}, #{outStatus,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="dishsys.bean.Order" useGeneratedKeys="true">
-    insert into order
+    insert into orders
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="openId != null">
         OPEN_ID,
@@ -151,8 +152,11 @@
       <if test="payTime != null">
         PAY_TIME,
       </if>
-      <if test="satus != null">
-        SATUS,
+      <if test="orderStatus != null">
+        ORDER_STATUS,
+      </if>
+      <if test="outStatus != null">
+        OUT_STATUS,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -186,19 +190,22 @@
       <if test="payTime != null">
         #{payTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="satus != null">
-        #{satus,jdbcType=VARCHAR},
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="outStatus != null">
+        #{outStatus,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="dishsys.bean.OrderExample" resultType="java.lang.Long">
-    select count(*) from order
+    select count(*) from orders
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update order
+    update orders
     <set>
       <if test="record.id != null">
         ID = #{record.id,jdbcType=BIGINT},
@@ -233,8 +240,11 @@
       <if test="record.payTime != null">
         PAY_TIME = #{record.payTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.satus != null">
-        SATUS = #{record.satus,jdbcType=VARCHAR},
+      <if test="record.orderStatus != null">
+        ORDER_STATUS = #{record.orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outStatus != null">
+        OUT_STATUS = #{record.outStatus,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -242,7 +252,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update order
+    update orders
     set ID = #{record.id,jdbcType=BIGINT},
       OPEN_ID = #{record.openId,jdbcType=VARCHAR},
       DISH_ID = #{record.dishId,jdbcType=BIGINT},
@@ -254,13 +264,14 @@
       REMARK = #{record.remark,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       PAY_TIME = #{record.payTime,jdbcType=TIMESTAMP},
-      SATUS = #{record.satus,jdbcType=VARCHAR}
+      ORDER_STATUS = #{record.orderStatus,jdbcType=VARCHAR},
+      OUT_STATUS = #{record.outStatus,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="dishsys.bean.Order">
-    update order
+    update orders
     <set>
       <if test="openId != null">
         OPEN_ID = #{openId,jdbcType=VARCHAR},
@@ -292,14 +303,17 @@
       <if test="payTime != null">
         PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="satus != null">
-        SATUS = #{satus,jdbcType=VARCHAR},
+      <if test="orderStatus != null">
+        ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="outStatus != null">
+        OUT_STATUS = #{outStatus,jdbcType=VARCHAR},
       </if>
     </set>
     where ID = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="dishsys.bean.Order">
-    update order
+    update orders
     set OPEN_ID = #{openId,jdbcType=VARCHAR},
       DISH_ID = #{dishId,jdbcType=BIGINT},
       ORDER_CODE = #{orderCode,jdbcType=VARCHAR},
@@ -310,7 +324,12 @@
       REMARK = #{remark,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
-      SATUS = #{satus,jdbcType=VARCHAR}
+      ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+      OUT_STATUS = #{outStatus,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="getAll" resultType="dishsys.bean.Order">
+    SELECT * FROM `orders` GROUP BY ORDER_CODE
+  </select>
 </mapper>

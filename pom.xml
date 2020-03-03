@@ -135,6 +135,14 @@
             <version>4.2.2</version>
         </dependency>
 
+        <!--百度富文本图片下载-->
+        <dependency>
+            <groupId>com.gitee.qdbp.thirdparty</groupId>
+            <artifactId>ueditor</artifactId>
+            <version>1.4.3.3</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

@@ -9,7 +9,7 @@ body {
     font: 12px/1.8 simhei, 'Microsoft YaHei', Arial, Verdana, Georgia, 'Comic Sans MS', 'Trebuchet MS', Black, Impact;
     min-width: 1200px;
     font-size: 14px;
-    background-image: url("../images/bg.jpg");
+    background: url("../images/bg.jpg") no-repeat;
 }
 
 input, button,

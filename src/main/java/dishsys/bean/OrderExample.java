@@ -795,73 +795,143 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andSatusIsNull() {
-            addCriterion("SATUS is null");
+        public Criteria andOrderStatusIsNull() {
+            addCriterion("ORDER_STATUS is null");
             return (Criteria) this;
         }
 
-        public Criteria andSatusIsNotNull() {
-            addCriterion("SATUS is not null");
+        public Criteria andOrderStatusIsNotNull() {
+            addCriterion("ORDER_STATUS is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSatusEqualTo(String value) {
-            addCriterion("SATUS =", value, "satus");
+        public Criteria andOrderStatusEqualTo(String value) {
+            addCriterion("ORDER_STATUS =", value, "orderStatus");
             return (Criteria) this;
         }
 
-        public Criteria andSatusNotEqualTo(String value) {
-            addCriterion("SATUS <>", value, "satus");
+        public Criteria andOrderStatusNotEqualTo(String value) {
+            addCriterion("ORDER_STATUS <>", value, "orderStatus");
             return (Criteria) this;
         }
 
-        public Criteria andSatusGreaterThan(String value) {
-            addCriterion("SATUS >", value, "satus");
+        public Criteria andOrderStatusGreaterThan(String value) {
+            addCriterion("ORDER_STATUS >", value, "orderStatus");
             return (Criteria) this;
         }
 
-        public Criteria andSatusGreaterThanOrEqualTo(String value) {
-            addCriterion("SATUS >=", value, "satus");
+        public Criteria andOrderStatusGreaterThanOrEqualTo(String value) {
+            addCriterion("ORDER_STATUS >=", value, "orderStatus");
             return (Criteria) this;
         }
 
-        public Criteria andSatusLessThan(String value) {
-            addCriterion("SATUS <", value, "satus");
+        public Criteria andOrderStatusLessThan(String value) {
+            addCriterion("ORDER_STATUS <", value, "orderStatus");
             return (Criteria) this;
         }
 
-        public Criteria andSatusLessThanOrEqualTo(String value) {
-            addCriterion("SATUS <=", value, "satus");
+        public Criteria andOrderStatusLessThanOrEqualTo(String value) {
+            addCriterion("ORDER_STATUS <=", value, "orderStatus");
             return (Criteria) this;
         }
 
-        public Criteria andSatusLike(String value) {
-            addCriterion("SATUS like", value, "satus");
+        public Criteria andOrderStatusLike(String value) {
+            addCriterion("ORDER_STATUS like", value, "orderStatus");
             return (Criteria) this;
         }
 
-        public Criteria andSatusNotLike(String value) {
-            addCriterion("SATUS not like", value, "satus");
+        public Criteria andOrderStatusNotLike(String value) {
+            addCriterion("ORDER_STATUS not like", value, "orderStatus");
             return (Criteria) this;
         }
 
-        public Criteria andSatusIn(List<String> values) {
-            addCriterion("SATUS in", values, "satus");
+        public Criteria andOrderStatusIn(List<String> values) {
+            addCriterion("ORDER_STATUS in", values, "orderStatus");
             return (Criteria) this;
         }
 
-        public Criteria andSatusNotIn(List<String> values) {
-            addCriterion("SATUS not in", values, "satus");
+        public Criteria andOrderStatusNotIn(List<String> values) {
+            addCriterion("ORDER_STATUS not in", values, "orderStatus");
             return (Criteria) this;
         }
 
-        public Criteria andSatusBetween(String value1, String value2) {
-            addCriterion("SATUS between", value1, value2, "satus");
+        public Criteria andOrderStatusBetween(String value1, String value2) {
+            addCriterion("ORDER_STATUS between", value1, value2, "orderStatus");
             return (Criteria) this;
         }
 
-        public Criteria andSatusNotBetween(String value1, String value2) {
-            addCriterion("SATUS not between", value1, value2, "satus");
+        public Criteria andOrderStatusNotBetween(String value1, String value2) {
+            addCriterion("ORDER_STATUS not between", value1, value2, "orderStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutStatusIsNull() {
+            addCriterion("OUT_STATUS is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutStatusIsNotNull() {
+            addCriterion("OUT_STATUS is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutStatusEqualTo(String value) {
+            addCriterion("OUT_STATUS =", value, "outStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutStatusNotEqualTo(String value) {
+            addCriterion("OUT_STATUS <>", value, "outStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutStatusGreaterThan(String value) {
+            addCriterion("OUT_STATUS >", value, "outStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutStatusGreaterThanOrEqualTo(String value) {
+            addCriterion("OUT_STATUS >=", value, "outStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutStatusLessThan(String value) {
+            addCriterion("OUT_STATUS <", value, "outStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutStatusLessThanOrEqualTo(String value) {
+            addCriterion("OUT_STATUS <=", value, "outStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutStatusLike(String value) {
+            addCriterion("OUT_STATUS like", value, "outStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutStatusNotLike(String value) {
+            addCriterion("OUT_STATUS not like", value, "outStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutStatusIn(List<String> values) {
+            addCriterion("OUT_STATUS in", values, "outStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutStatusNotIn(List<String> values) {
+            addCriterion("OUT_STATUS not in", values, "outStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutStatusBetween(String value1, String value2) {
+            addCriterion("OUT_STATUS between", value1, value2, "outStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andOutStatusNotBetween(String value1, String value2) {
+            addCriterion("OUT_STATUS not between", value1, value2, "outStatus");
             return (Criteria) this;
         }
     }

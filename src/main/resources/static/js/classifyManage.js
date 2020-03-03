@@ -22,20 +22,20 @@ $(function () {
             type: "POST",
             data: $("#classifyForm").serialize(),
             success: res => {
+                $("#addOrModify").modal("hide");
                 if (200 === res.code) {
-                    $("#addOrModify").modal("hide");
                     $("#toastText").html("操作成功");
                     $("#toastModal").modal("show");
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         $("#toastModal").modal("hide");
                         location.reload();
-                    },500);
-                }else{
+                    }, 500);
+                } else {
                     $("#toastText").html("操作异常");
                     $("#toastModal").modal("show");
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         $("#toastModal").modal("hide");
-                    },500);
+                    }, 500);
                 }
             }
         })

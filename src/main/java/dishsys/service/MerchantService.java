@@ -23,4 +23,8 @@ public class MerchantService {
         List<Merchant> merchantList = merchantMapper.selectByExample(example);
         return merchantList.size() > 0 ? merchantList.get(0) : null;
     }
+
+    public void doEdit(Merchant merchant) {
+        merchantMapper.updateByPrimaryKeySelective(merchant);
+    }
 }

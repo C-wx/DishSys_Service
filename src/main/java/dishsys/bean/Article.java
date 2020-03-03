@@ -15,6 +15,8 @@ public class Article {
 
     private String content;
 
+    private String type;    //操作类型
+
     public Long getId() {
         return id;
     }
@@ -61,5 +63,13 @@ public class Article {
 
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -13,7 +13,7 @@
 
     <script src="${base}/js/dishManage.js"></script>
     <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="${base}/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${base}/plugins/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -79,10 +79,13 @@
                         <a href="/toClassifyManage"><i class="fa fa-table fa-fw"></i> 类别管理</a>
                     </li>
                     <li>
-                        <a href="forms.html"><i class="fa fa-edit fa-fw"></i> 订单管理</a>
+                        <a href="/toOrderManage"><i class="fa fa-edit fa-fw"></i> 订单管理</a>
                     </li>
                     <li>
-                        <a href="forms.html"><i class="fa fa-edit fa-fw"></i> 信息管理</a>
+                        <a href="/toArticleManage"><i class="fa fa-edit fa-fw"></i> 文章管理</a>
+                    </li>
+                    <li>
+                        <a href="/toInfoManage"><i class="fa fa-edit fa-fw"></i> 信息管理</a>
                     </li>
                 </ul>
             </div>
@@ -92,17 +95,20 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">菜品管理</h1>
+                <h1 class="alert alert-success page-header" role="alert">菜品管理</h1>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <button type="button" class="btn btn-info btn-sm" style="margin-bottom: 8px" id="add">
-                    添加
-                    <i class="fa fa-plus"></i>
-                </button>
-                <div class="panel panel-default">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        菜品列表 <i class="fa fa-folder"></i>
+                    </div>
                     <div class="panel-body">
+                        <button type="button" class="btn btn-info btn-sm" style="margin-bottom: 8px" id="add">
+                            添加
+                            <i class="fa fa-plus"></i>
+                        </button>
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
@@ -141,45 +147,47 @@
                                 </#list>
                                 </tbody>
                             </table>
-                            <div id="navigatepage" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <nav aria-label="Page navigation">
-                                    <ul class="pagination">
-                                        <#if pageInfo.navigateFirstPage gt 1>
-                                            <li>
-                                                <a href="/toDishManage?pn=1" aria-label="Previous">
-                                                    <span aria-hidden="true">&lt;&lt;</span>
-                                                </a>
-                                            </li>
-                                        </#if>
-                                        <#if  pageInfo.hasPreviousPage >
-                                            <li>
-                                                <a href="/toDishManage?pn=${pageInfo.pageNum-1}" aria-label="Previous">
-                                                    <span aria-hidden="true">&lt;</span>
-                                                </a>
-                                            </li>
-                                        </#if>
-                                        <#list pageInfo.navigatepageNums as pn>
-                                                    <li class="${(pageInfo.pageNum==pn)?string('active','')}">
-                                                        <a href="/toDishManage?pn=${pn}">${pn}</a>
-                                                    </li>
-                                        </#list>
-                                        <#if pageInfo.hasNextPage >
-                                            <li>
-                                                <a href="/toDishManage?pn=${pageInfo.pageNum+1}" aria-label="Previous">
-                                                    <span aria-hidden="true">&gt;</span>
-                                                </a>
-                                            </li>
-                                        </#if>
-                                        <#if pageInfo.navigateLastPage<pageInfo.pages >
-                                            <li>
-                                                <a href="/toDishManage?pn=${pageInfo.pages}" aria-label="Previous">
-                                                    <span aria-hidden="true">&gt;&gt;</span>
-                                                </a>
-                                            </li>
-                                        </#if>
-                                    </ul>
-                                </nav>
-                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div id="navigatepage" style="text-align: center">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination" style="margin: 0px">
+                                    <#if pageInfo.navigateFirstPage gt 1>
+                                        <li>
+                                            <a href="/toDishManage?pn=1" aria-label="Previous">
+                                                <span aria-hidden="true">&lt;&lt;</span>
+                                            </a>
+                                        </li>
+                                    </#if>
+                                    <#if  pageInfo.hasPreviousPage >
+                                        <li>
+                                            <a href="/toDishManage?pn=${pageInfo.pageNum-1}" aria-label="Previous">
+                                                <span aria-hidden="true">&lt;</span>
+                                            </a>
+                                        </li>
+                                    </#if>
+                                    <#list pageInfo.navigatepageNums as pn>
+                                                <li class="${(pageInfo.pageNum==pn)?string('active','')}">
+                                                    <a href="/toDishManage?pn=${pn}">${pn}</a>
+                                                </li>
+                                    </#list>
+                                    <#if pageInfo.hasNextPage >
+                                        <li>
+                                            <a href="/toDishManage?pn=${pageInfo.pageNum+1}" aria-label="Previous">
+                                                <span aria-hidden="true">&gt;</span>
+                                            </a>
+                                        </li>
+                                    </#if>
+                                    <#if pageInfo.navigateLastPage<pageInfo.pages >
+                                        <li>
+                                            <a href="/toDishManage?pn=${pageInfo.pages}" aria-label="Previous">
+                                                <span aria-hidden="true">&gt;&gt;</span>
+                                            </a>
+                                        </li>
+                                    </#if>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>

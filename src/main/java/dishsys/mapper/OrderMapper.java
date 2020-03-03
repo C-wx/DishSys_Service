@@ -2,8 +2,9 @@ package dishsys.mapper;
 
 import dishsys.bean.Order;
 import dishsys.bean.OrderExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface OrderMapper {
     long countByExample(OrderExample example);
@@ -27,4 +28,6 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
+    List<Order> getAll();
 }

@@ -121,7 +121,7 @@
         </table>
 -->
 <!--
-        <table tableName="order" domainObjectName="Order" enableCountByExample="true"
+        <table tableName="orders" domainObjectName="Order" enableCountByExample="true"
                enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true">
             <property name="useActualColumnNames" value="false"/>

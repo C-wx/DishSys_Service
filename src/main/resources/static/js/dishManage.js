@@ -16,8 +16,8 @@ $(function () {
             type: "POST",
             data: $("#opeForm").serialize(),
             success: res => {
+                $("#deleteModal").modal("hide");
                 if (200 === res.code) {
-                    $("#deleteModal").modal("hide");
                     $("#toastText").html("操作成功");
                     $("#toastModal").modal("show");
                     setTimeout(() => {

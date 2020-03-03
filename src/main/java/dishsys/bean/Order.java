@@ -25,7 +25,13 @@ public class Order {
 
     private Date payTime;
 
-    private String satus;
+    private String orderStatus;
+
+    private String outStatus;
+
+    private Customer customer;  //点餐客户
+
+    private Dish dish;  //菜品
 
     public Long getId() {
         return id;
@@ -115,11 +121,35 @@ public class Order {
         this.payTime = payTime;
     }
 
-    public String getSatus() {
-        return satus;
+    public String getOrderStatus() {
+        return orderStatus;
     }
 
-    public void setSatus(String satus) {
-        this.satus = satus == null ? null : satus.trim();
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus == null ? null : orderStatus.trim();
+    }
+
+    public String getOutStatus() {
+        return outStatus;
+    }
+
+    public void setOutStatus(String outStatus) {
+        this.outStatus = outStatus == null ? null : outStatus.trim();
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Dish getDish() {
+        return dish;
+    }
+
+    public void setDish(Dish dish) {
+        this.dish = dish;
     }
 }

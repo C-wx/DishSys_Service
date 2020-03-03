@@ -8,7 +8,7 @@
     <link href="${base}/css/bootstrap.min.css" rel="stylesheet">
     <script src="${base}/js/bootstrap.min.js"></script>
     <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="${base}/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${base}/plugins/font-awesome/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="${base}/css/login.css">
     <link href="${base}/css/main.css" rel="stylesheet">
