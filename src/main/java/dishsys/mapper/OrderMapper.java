@@ -30,4 +30,6 @@ public interface OrderMapper {
     int updateByPrimaryKey(Order record);
 
     List<Order> getAll();
+
+    List<String> getOrderCodeList(@Param("orderStatus") String orderStatus);
 }

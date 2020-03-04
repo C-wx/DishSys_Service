@@ -2,8 +2,9 @@ package dishsys.mapper;
 
 import dishsys.bean.Dish;
 import dishsys.bean.DishExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface DishMapper {
     long countByExample(DishExample example);
@@ -27,4 +28,8 @@ public interface DishMapper {
     int updateByPrimaryKeySelective(Dish record);
 
     int updateByPrimaryKey(Dish record);
+
+    List<Dish> getHotFootList();
+
+    List<Dish> getCorrespond(@Param("classifyId") Integer classifyId);
 }

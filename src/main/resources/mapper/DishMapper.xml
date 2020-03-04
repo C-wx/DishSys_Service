@@ -173,7 +173,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+    <update id="updateByExampleSelective" parameterType="map">
     update dishes
     <set>
       <if test="record.id != null">
@@ -265,4 +265,11 @@
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="getHotFootList" resultType="dishsys.bean.Dish">
+    SELECT * FROM `dishes` ORDER BY SALES DESC limit 6
+  </select>
+  <select id="getCorrespond" resultType="dishsys.bean.Dish">
+   SELECT * from dishes t1 LEFT JOIN classify t2 on t1.CLASSIFY_ID = t2.ID where t2.ID  = #{classifyId}
+  </select>
 </mapper>

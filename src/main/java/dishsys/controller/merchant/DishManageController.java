@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -95,5 +96,46 @@ public class DishManageController {
             dishService.doAdd(dish);
         }
         return Result.success();
+    }
+
+
+    /**
+     * -------------------------小程序端操作-----------------------------
+     */
+
+    @ResponseBody
+    @RequestMapping("/getRemendedFootList")
+    public Object getRemendedFootList() {
+        List<Dish> dishList = dishService.getRemendedFootList();
+        return Result.success(dishList);
+    }
+
+    @ResponseBody
+    @RequestMapping("/getHotFootList")
+    public Object getHotFootList() {
+        List<Dish> dishList = dishService.getHotFootList();
+        return Result.success(dishList);
+    }
+
+    @ResponseBody
+    @RequestMapping("/getClassifyDish")
+    public Object getClassifyDish() {
+        List<Map<String, Object>> classifyDishList = dishService.getClassifyDish();
+        return Result.success(classifyDishList);
+    }
+
+    @ResponseBody
+    @RequestMapping("/getDishDetail")
+    public Object getDishDetail(Long id) {
+        Dish dish = dishService.getOne(id);
+        return Result.success(dish);
+    }
+
+    @ResponseBody
+    @RequestMapping("/getSearchResult")
+    public Object getSearchResult(String name) {
+        List<Dish> dishList = dishService.getSearchResult(name);
+        return Result.success(dishList);
+
     }
 }

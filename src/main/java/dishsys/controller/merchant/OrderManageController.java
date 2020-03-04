@@ -1,5 +1,7 @@
 package dishsys.controller.merchant;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import dishsys.bean.Customer;
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @Explain: 订单管理控制类
@@ -73,4 +77,52 @@ public class OrderManageController {
         orderService.doEdit(order);
         return Result.success();
     }
+
+    /**
+     * ----------------------小程序端---------------------------
+     **/
+
+    @ResponseBody
+    @RequestMapping("/submitOrder")
+    public Object submitOrder(@RequestParam("orderInfo") String orderInfo) {
+        JSONArray orderArray = JSONArray.parseArray(orderInfo);
+        String orderCode = UUID.randomUUID().toString().substring(0, 8);
+        for (Object o : orderArray) {
+            Order oi = JSON.toJavaObject((JSON) o, Order.class);
+            oi.setOrderCode(orderCode);
+            orderService.doAdd(oi);
+        }
+        return Result.success(orderCode);
+    }
+
+    @ResponseBody
+    @RequestMapping("/doPay")
+    public Object doPay(String orderCode) {
+        Order order = new Order();
+        order.setPayTime(new Date());
+        order.setOrderStatus("1");
+        order.setOrderCode(orderCode);
+        orderService.doPay(order);
+        return Result.success();
+    }
+
+    @ResponseBody
+    @RequestMapping("/getOrderList")
+    public Object getOrderList(String orderStatus) {
+        if ("-1".equals(orderStatus)) {
+            orderStatus = "%";
+        } else {
+            orderStatus = "%" + orderStatus + "%";
+        }
+        List<List<Order>> orderList = orderService.getOrderList(orderStatus);
+        return Result.success(orderList);
+    }
+
+    @ResponseBody
+    @RequestMapping("/cancelOrder")
+    public Object cancelOrder(String orderCode) {
+        orderService.doDel(orderCode);
+        return Result.success();
+    }
+
 }

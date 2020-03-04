@@ -94,7 +94,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from orders
     where ID = #{id,jdbcType=BIGINT}
@@ -332,4 +332,7 @@
   <select id="getAll" resultType="dishsys.bean.Order">
     SELECT * FROM `orders` GROUP BY ORDER_CODE
   </select>
+    <select id="getOrderCodeList" resultType="java.lang.String">
+      SELECT ORDER_CODE FROM `orders` where ORDER_STATUS like #{orderStatus} GROUP BY ORDER_CODE
+    </select>
 </mapper>
