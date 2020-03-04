@@ -40,7 +40,7 @@
 
 <!--预览模态框-->
 <div class="modal fade" tabindex="-1" id="previewModal" role="dialog">
-    <div class="modal-dialog" role="document" style="width: 800px">
+    <div class="modal-dialog" role="document" style="width: 900px">
         <div class="modal-content">
             <div class="modal-body" id="preview">
             </div>
