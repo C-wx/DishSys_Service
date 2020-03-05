@@ -96,6 +96,9 @@
                         <a href="/toArticleManage" class="active"><i class="fa fa-edit fa-fw"></i> 文章管理</a>
                     </li>
                     <li>
+                        <a href="/toDiscussManage"><i class="fa fa-edit fa-fw"></i> 评论管理</a>
+                    </li>
+                    <li>
                         <a href="/toInfoManage"><i class="fa fa-edit fa-fw"></i> 信息管理</a>
                     </li>
                 </ul>
@@ -118,7 +121,15 @@
                         <i class="fa fa-edit"></i>
                     </div>
                     <div class="panel-body">
-                        <button type="button" class="btn btn-info btn-sm" style="margin-bottom: 8px" id="add">
+                        <form class="form-inline" style="margin: 8px;display: inline-block" action="/toArticleManage">
+                            <div class="form-group">
+                                <label for="title" style="width: 100px">文章标题:</label>
+                                <input type="text" class="form-control" id="title" name="title">
+                            </div>
+                            <button type="submit" class="btn btn-default">查找</button>
+                            <button type="submit" class="btn btn-danger">重置</button>
+                        </form>
+                        <button type="button" class="btn btn-info" style="display: inline-block" id="add">
                             发布文章
                             <i class="fa fa-plus"></i>
                         </button>
@@ -138,7 +149,7 @@
                                 <tr>
                                     <th>${article_index+1}</th>
                                     <th>${article.title}</th>
-                                    <th>${article.summary}</th>
+                                    <th style="max-width: 300px">${article.summary}</th>
                                     <th>${article.publishTime?string('yyyy-MM-dd hh:mm:ss')}</th>
                                     <th>
                                         <button type="button" class="btn btn-info btn-sm" id="toView"

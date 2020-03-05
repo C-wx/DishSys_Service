@@ -330,9 +330,9 @@
   </update>
 
   <select id="getAll" resultType="dishsys.bean.Order">
-    SELECT * FROM `orders` GROUP BY ORDER_CODE
+    SELECT * FROM `orders` where ORDER_CODE LIKE #{orderCode} GROUP BY ORDER_CODE ORDER BY id desc
   </select>
     <select id="getOrderCodeList" resultType="java.lang.String">
-      SELECT ORDER_CODE FROM `orders` where ORDER_STATUS like #{orderStatus} GROUP BY ORDER_CODE
+      SELECT ORDER_CODE FROM `orders` where ORDER_STATUS like #{orderStatus} and OPEN_ID = #{openId} GROUP BY ORDER_CODE ORDER BY id desc
     </select>
 </mapper>

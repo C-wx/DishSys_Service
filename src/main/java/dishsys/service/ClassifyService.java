@@ -1,6 +1,7 @@
 package dishsys.service;
 
 import dishsys.bean.Classify;
+import dishsys.bean.ClassifyExample;
 import dishsys.mapper.ClassifyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,11 @@ public class ClassifyService {
     @Autowired
     private ClassifyMapper classifyMapper;
 
-    public List<Classify> getAll() {
-        return classifyMapper.selectByExample(null);
+    public List<Classify> getAll(String value) {
+        ClassifyExample classifyExample = new ClassifyExample();
+        classifyExample.createCriteria().andValueLike("%" + value.trim() + "%");
+        classifyExample.setOrderByClause("id desc");
+        return classifyMapper.selectByExample(classifyExample);
     }
 
     public void doEdit(Classify classify) {

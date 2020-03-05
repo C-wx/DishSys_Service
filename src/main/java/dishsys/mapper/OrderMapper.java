@@ -29,7 +29,7 @@ public interface OrderMapper {
 
     int updateByPrimaryKey(Order record);
 
-    List<Order> getAll();
+    List<Order> getAll(@Param("orderCode") String orderCode);
 
-    List<String> getOrderCodeList(@Param("orderStatus") String orderStatus);
+    List<String> getOrderCodeList(@Param("orderStatus") String orderStatus,@Param("openId") String openId);
 }

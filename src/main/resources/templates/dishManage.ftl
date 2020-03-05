@@ -85,6 +85,9 @@
                         <a href="/toArticleManage"><i class="fa fa-edit fa-fw"></i> 文章管理</a>
                     </li>
                     <li>
+                        <a href="/toDiscussManage"><i class="fa fa-edit fa-fw"></i> 评论管理</a>
+                    </li>
+                    <li>
                         <a href="/toInfoManage"><i class="fa fa-edit fa-fw"></i> 信息管理</a>
                     </li>
                 </ul>
@@ -105,7 +108,15 @@
                         菜品列表 <i class="fa fa-folder"></i>
                     </div>
                     <div class="panel-body">
-                        <button type="button" class="btn btn-info btn-sm" style="margin-bottom: 8px" id="add">
+                        <form class="form-inline" style="margin: 8px;display: inline-block" action="/toDishManage">
+                            <div class="form-group">
+                                <label for="name" style="width: 100px">菜品名称:</label>
+                                <input type="text" class="form-control" id="name" name="name">
+                            </div>
+                            <button type="submit" class="btn btn-default">查找</button>
+                            <button type="submit" class="btn btn-danger">重置</button>
+                        </form>
+                        <button type="button" class="btn btn-info" style="display: inline-block" id="add">
                             添加
                             <i class="fa fa-plus"></i>
                         </button>

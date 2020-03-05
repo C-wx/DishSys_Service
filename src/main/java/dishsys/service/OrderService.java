@@ -22,8 +22,8 @@ public class OrderService {
     @Autowired
     private DishService dishService;
 
-    public List<Order> getAll() {
-        return orderMapper.getAll();
+    public List<Order> getAll(String orderCode) {
+        return orderMapper.getAll("%" + orderCode.trim() + "%");
     }
 
     public List<Order> getDetail(String orderCode) {
@@ -48,15 +48,15 @@ public class OrderService {
         orderMapper.updateByExampleSelective(order, orderExample);
     }
 
-    public List<List<Order>> getOrderList(String orderStatus) {
-        List<String> orderCodeList = orderMapper.getOrderCodeList(orderStatus);
+    public List<List<Order>> getOrderList(String orderStatus, String openId) {
+        List<String> orderCodeList = orderMapper.getOrderCodeList(orderStatus, openId);      //获取订单编号列表
         List<List<Order>> totalList = new ArrayList<>();
-        for (String orderCode : orderCodeList) {
+        for (String orderCode : orderCodeList) {                                            //根据订单编号查找对应订单
             OrderExample orderExample = new OrderExample();
             orderExample.createCriteria().andOrderCodeEqualTo(orderCode);
             List<Order> orderList = orderMapper.selectByExample(orderExample);
             for (Order order : orderList) {
-                Dish dish = dishService.getOne(order.getDishId());
+                Dish dish = dishService.getOne(order.getDishId());                          //根据菜品ID 查找该订单对应的菜品
                 order.setDish(dish);
             }
             totalList.add(orderList);

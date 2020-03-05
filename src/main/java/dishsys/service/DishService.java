@@ -24,8 +24,11 @@ public class DishService {
     @Autowired
     private ClassifyService classifyService;
 
-    public List<Dish> getAll() {
-        return dishMapper.selectByExample(null);
+    public List<Dish> getAll(String name) {
+        DishExample dishExample = new DishExample();
+        dishExample.createCriteria().andNameLike("%" + name.trim() + "%");
+        dishExample.setOrderByClause("id desc");
+        return dishMapper.selectByExample(dishExample);
     }
 
     public Dish getOne(Long id) {
@@ -55,13 +58,13 @@ public class DishService {
     }
 
     public List<Map<String, Object>> getClassifyDish() {
-        List<Classify> classifies = classifyService.getAll();
+        List<Classify> classifies = classifyService.getAll("%");
         List<Map<String, Object>> classifyDishList = new ArrayList<>();
         for (Classify classify : classifies) {
-            Map<String,Object> foodMap = new HashMap<>();
-            foodMap.put("name",classify.getValue());
+            Map<String, Object> foodMap = new HashMap<>();
+            foodMap.put("name", classify.getValue());
             List<Dish> dishList = dishMapper.getCorrespond(classify.getId());
-            foodMap.put("foods",dishList);
+            foodMap.put("foods", dishList);
             classifyDishList.add(foodMap);
         }
         return classifyDishList;

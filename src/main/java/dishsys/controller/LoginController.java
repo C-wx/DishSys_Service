@@ -32,23 +32,31 @@ public class LoginController {
         return "login";
     }
 
+    /**
+     * @param merchant 登录实体对象
+     * @Explain 登录操作
+     * @Return
+     */
     @ResponseBody
     @RequestMapping("/doLogin")
     public Object doLogin(Merchant merchant, HttpSession session) {
-        Merchant loginMerchant = merchantService.getByPhoneAndPwd(merchant);
+        Merchant loginMerchant = merchantService.getByPhoneAndPwd(merchant);    //根据账号密码向数据库中查找用户
         if (!session.getAttribute("img_session_code").toString().equalsIgnoreCase(merchant.getVeryCode())) {
             return Result.error("验证码不正确,请重新输入");
-        } else if (Objects.isNull(loginMerchant)) {
+        } else if (Objects.isNull(loginMerchant)) {     //没查到用户，说明账号密码错误
             return Result.error("用户名或密码错误");
-        } else {
-            session.setAttribute("LOGIN_USER",loginMerchant);
+        } else {        //查到用户，往session中存入当前用户
+            session.setAttribute("LOGIN_USER", loginMerchant);
             return Result.success();
         }
     }
 
+    /**
+     * @Explain 退出登录操作
+     */
     @GetMapping("/logout")
     public ModelAndView logout(HttpServletRequest request) {
-        request.getSession().removeAttribute("LOGIN_USER");
+        request.getSession().removeAttribute("LOGIN_USER");     //清除session中的用户信息
         request.getSession().invalidate();
         return new ModelAndView(new RedirectView("/toLogin"));
     }

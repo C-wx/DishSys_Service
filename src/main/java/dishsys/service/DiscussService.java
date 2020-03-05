@@ -1,6 +1,7 @@
 package dishsys.service;
 
 import dishsys.bean.Discuss;
+import dishsys.bean.DiscussExample;
 import dishsys.mapper.DiscussMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,10 @@ public class DiscussService {
         discussMapper.insertSelective(discuss);
     }
 
-    public List<Discuss> getAll() {
-        return  discussMapper.selectByExample(null);
+    public List<Discuss> getAll(String orderCode) {
+        DiscussExample discussExample = new DiscussExample();
+        discussExample.createCriteria().andOrderCodeLike("%" + orderCode.trim() + "%");
+        discussExample.setOrderByClause("id desc");
+        return discussMapper.selectByExample(discussExample);
     }
 }

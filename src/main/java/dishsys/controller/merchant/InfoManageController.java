@@ -24,12 +24,17 @@ public class InfoManageController {
     @Autowired
     private MerchantService merchantService;
 
+    /**
+     * @Explain 跳转店铺信息页面
+     */
     @RequestMapping("/toInfoManage")
     public String toInfoManage() {
         return "infoManage";
     }
 
     /**
+     * @param merchant 商家传输实体
+     * @param files    图片流
      * @Explain 修改店铺信息
      */
     @ResponseBody
@@ -48,9 +53,23 @@ public class InfoManageController {
                 }
             }
         }
-        merchantService.doEdit(merchant);
+        merchantService.doEdit(merchant);       //修改操作
         Merchant loginMerchant = merchantService.getByPhoneAndPwd(merchant);
-        session.setAttribute("LOGIN_USER", loginMerchant);
+        session.setAttribute("LOGIN_USER", loginMerchant);      //将修改后的商家放回session
         return Result.success();
+    }
+
+    /**
+     * ------------小程序端操作------------
+     */
+
+    /**
+     * @Explain 获取商家信息
+     */
+    @ResponseBody
+    @RequestMapping("/getMerchantInfo")
+    public Object getMerchantInfo() {
+        Merchant merchant = merchantService.getOne();
+        return Result.success(merchant);
     }
 }

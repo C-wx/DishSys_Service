@@ -27,4 +27,8 @@ public class MerchantService {
     public void doEdit(Merchant merchant) {
         merchantMapper.updateByPrimaryKeySelective(merchant);
     }
+
+    public Merchant getOne() {
+        return merchantMapper.selectByPrimaryKey(1L);
+    }
 }

@@ -18,51 +18,11 @@
 </head>
 <body>
 
-<!--新增/修改模态框-->
-<div class="modal fade" id="addOrModify" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-sm" role="document" style="margin-top: 360px;">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="kaiti f18 bold" style="color: #1b6d85;">请输入菜品类别：</div>
-                <form id="classifyForm">
-                    <input type="hidden" name="id" id="id">
-                    <input type="text" name="value" id="value" class="form-control f18 bold">
-                    <div style="text-align: center;margin-top: 20px">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="button" id="save" class="btn btn-primary">保存</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!--END-->
 
 <!--提示模态框-->
 <div class="modal fade bs-example-modal-sm" id="toastModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
         <h4 class="modal-title bold kaiti" id="toastText"></h4>
-    </div>
-</div>
-<!--END-->
-
-<!--删除模态框-->
-<div class="modal fade bs-example-modal-sm" tabindex="-1" id="deleteModal" role="dialog">
-    <div class="modal-dialog modal-sm" role="document" style="margin-top: 360px;">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="kaiti f28 bold center" style="color: #1b6d85;">确认删除？</div>
-                <form id="classifyForm">
-                    <input type="hidden" name="id" id="id">
-                    <input type="hidden" name="type" id="type">
-                    <div style="text-align: center;margin-top: 20px">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="button" id="save" class="btn btn-primary">确定</button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
     </div>
 </div>
 <!--END-->
@@ -97,7 +57,7 @@
                         <a href="/toDishManage"><i class="fa fa-dashboard fa-fw"></i> 菜品管理</a>
                     </li>
                     <li>
-                        <a href="/toClassifyManage" class="active"><i class="fa fa-table fa-fw"></i> 类别管理</a>
+                        <a href="/toClassifyManage"><i class="fa fa-table fa-fw"></i> 类别管理</a>
                     </li>
                     <li>
                         <a href="/toOrderManage"><i class="fa fa-edit fa-fw"></i> 订单管理</a>
@@ -106,7 +66,7 @@
                         <a href="/toArticleManage"><i class="fa fa-edit fa-fw"></i> 文章管理</a>
                     </li>
                     <li>
-                        <a href="/toDiscussManage"><i class="fa fa-edit fa-fw"></i> 评论管理</a>
+                        <a href="/toDiscussManage" class="active"><i class="fa fa-edit fa-fw"></i> 评论管理</a>
                     </li>
                     <li>
                         <a href="/toInfoManage"><i class="fa fa-edit fa-fw"></i> 信息管理</a>
@@ -126,47 +86,36 @@
             <div class="col-lg-12">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        类别列表 <i class="fa fa-folder"></i>
+                        评论列表 <i class="fa fa-folder"></i>
                     </div>
+                    <form class="form-inline" style="margin: 10px 0 0 20px" action="/toDiscussManage">
+                        <div class="form-group">
+                            <label for="orderCode" style="width: 100px">订单编码:</label>
+                            <input type="text" class="form-control" id="orderCode" name="orderCode">
+                        </div>
+                        <button type="submit" class="btn btn-default">查找</button>
+                        <button type="submit" class="btn btn-danger">重置</button>
+                    </form>
                     <div class="panel-body">
-                        <form class="form-inline" style="margin: 8px;display: inline-block" action="/toClassifyManage">
-                            <div class="form-group">
-                                <label for="value" style="width: 100px">类别名称:</label>
-                                <input type="text" class="form-control" id="value" name="value">
-                            </div>
-                            <button type="submit" class="btn btn-default">查找</button>
-                            <button type="submit" class="btn btn-danger">重置</button>
-                        </form>
-                        <button type="button" class="btn btn-info" style="display: inline-block" id="add">
-                            添加
-                            <i class="fa fa-plus"></i>
-                        </button>
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
                                     <th>序号</th>
-                                    <th>类别名称</th>
-                                    <th>创建时间</th>
-                                    <th>操作</th>
+                                    <th>评论人</th>
+                                    <th>订单编码</th>
+                                    <th>评论内容</th>
+                                    <th>评论时间</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <#list pageInfo.list as classify>
+                                <#list pageInfo.list as discuss>
                                 <tr>
-                                    <th>${classify_index+1}</th>
-                                    <th>${classify.value}</th>
-                                    <th>${classify.createTime?string('yyyy-MM-dd hh:mm:ss')}</th>
-                                    <th>
-                                        <button type="button" class="btn btn-primary btn-sm" id="modify"
-                                                data-id="${classify.id}" data-value="${classify.value}">
-                                            修改
-                                        </button>
-                                        <button type="button" class="btn btn-danger btn-sm" id="delete"
-                                                data-id="${classify.id}" data-value="${classify.value}">
-                                            删除
-                                        </button>
-                                    </th>
+                                    <th>${discuss_index+1}</th>
+                                    <th>${discuss.customer.name}</th>
+                                    <th>${discuss.orderCode}</th>
+                                    <th>${discuss.content}</th>
+                                    <th>${discuss.commentTime?string('yyyy-MM-dd hh:mm:ss')}</th>
                                 </tr>
                                 </#list>
                                 </tbody>
@@ -174,7 +123,7 @@
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <div id="navigatepage"  style="text-align: center">
+                        <div id="navigatepage" style="text-align: center">
                             <nav aria-label="Page navigation">
                                 <ul class="pagination" style="margin: 0px">
                                     <#if pageInfo.navigateFirstPage gt 1>

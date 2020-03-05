@@ -23,15 +23,24 @@ public class ClassifyManageController {
     @Autowired
     private ClassifyService classifyService;
 
+    /**
+     * @param pn    页码
+     * @param size  每页的数量
+     * @param sort  排序条件
+     * @param order 排序规则
+     * @param value 类别名称
+     * @Explain 获取类别列表
+     */
     @RequestMapping("/toClassifyManage")
     public String toClassifyManage(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
                                    @RequestParam(value = "size", defaultValue = "6") Integer size,
                                    @RequestParam(value = "sort", defaultValue = "id") String sort,
                                    @RequestParam(value = "order", defaultValue = "desc") String order,
+                                   @RequestParam(value = "value", defaultValue = "%") String value,
                                    Model model) {
         //在查询之前开启，传入页码，以及每页的大小
         PageHelper.startPage(pn, size, sort + " " + order);     //pn:页码  10：页大小
-        List<Classify> classifyList = classifyService.getAll();
+        List<Classify> classifyList = classifyService.getAll(value);
         //使用pageInfo包装查询后的结果，只需要将pageInfo交给页面就行了。
         //封装了详细的分页信息，包括有我们查询出来的数据，传入分页插件中要显示的页的数目 1 2 3 4 5
         PageInfo pageInfo = new PageInfo(classifyList, 5);
@@ -39,6 +48,10 @@ public class ClassifyManageController {
         return "classifyManage";
     }
 
+    /**
+     * @param classify 类别传输实体对象
+     * @Explain 修改/添加 类别
+     */
     @ResponseBody
     @RequestMapping("/doSaveClassify")
     public Object doSaveClassify(Classify classify) {

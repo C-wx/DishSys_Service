@@ -86,6 +86,9 @@
                         <a href="/toArticleManage"><i class="fa fa-edit fa-fw"></i> 文章管理</a>
                     </li>
                     <li>
+                        <a href="/toDiscussManage"><i class="fa fa-edit fa-fw"></i> 评论管理</a>
+                    </li>
+                    <li>
                         <a href="/toInfoManage"><i class="fa fa-edit fa-fw"></i> 信息管理</a>
                     </li>
                 </ul>
@@ -105,6 +108,14 @@
                     <div class="panel-heading">
                         订单列表 <i class="fa fa-folder"></i>
                     </div>
+                    <form class="form-inline" style="margin: 10px 0 0 20px" action="/toOrderManage">
+                        <div class="form-group">
+                            <label for="orderCode" style="width: 100px">订单编码:</label>
+                            <input type="text" class="form-control" id="orderCode" name="orderCode">
+                        </div>
+                        <button type="submit" class="btn btn-default">查找</button>
+                        <button type="submit" class="btn btn-danger">重置</button>
+                    </form>
                     <div class="panel-body">
                         <div class="table-responsive">
                             <table class="table table-hover">

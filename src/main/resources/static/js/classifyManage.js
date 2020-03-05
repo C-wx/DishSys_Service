@@ -23,6 +23,7 @@ $(function () {
             data: $("#classifyForm").serialize(),
             success: res => {
                 $("#addOrModify").modal("hide");
+                $("#deleteModal").modal("hide");
                 if (200 === res.code) {
                     $("#toastText").html("操作成功");
                     $("#toastModal").modal("show");

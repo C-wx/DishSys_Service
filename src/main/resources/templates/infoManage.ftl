@@ -68,6 +68,9 @@
                         <a href="/toArticleManage"><i class="fa fa-edit fa-fw"></i> 文章管理</a>
                     </li>
                     <li>
+                        <a href="/toDiscussManage"><i class="fa fa-edit fa-fw"></i> 评论管理</a>
+                    </li>
+                    <li>
                         <a href="/toInfoManage" class="active"><i class="fa fa-edit fa-fw"></i> 信息管理</a>
                     </li>
                 </ul>

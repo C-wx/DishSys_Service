@@ -16,11 +16,15 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    /**
+     * @param customer
+     * @Explain 如果用户为首次登录, 则往数据库插入用户信息
+     */
     @ResponseBody
     @RequestMapping("addCustomer")
     public Object addCustomer(Customer customer) {
         Customer ci = customerService.getByOpenId(customer.getOpenId());
-        if (null == ci) {
+        if (null == ci) {       //没有查到用户 说明是首次登录
             customerService.doAdd(customer);
         }
         return "success";
